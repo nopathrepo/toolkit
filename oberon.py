@@ -2,7 +2,7 @@
 OBERON v2
 
   To run the program, type:
-    python FILE.py
+    python oberon.py
   into your terminal.
 
   Version 1.0:
