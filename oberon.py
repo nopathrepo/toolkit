@@ -130,6 +130,31 @@ def check_char(path):
                     print("*** " + line + " ***")
                     print("<<< Contains more than " + max_size + "  characters >>>\n")
 
+""" checks all .h files in specified path to see if they have header guards.
+    if a .h file does not have a guard, then #pragma once will be prepended
+    to the file. """
+def check_head_guards(path):
+
+    for filename in os.listdir(path):
+        if ".h" not in filename:
+            continue        # go to next file in directory
+
+        file_has_guard = False
+
+        with open(path + filename, 'r') as original:
+            data = original.read()
+            data_lines = data.splitlines()
+
+            for line in data_lines:
+                if line == "#pragma once" or "#ifndef" in line:
+                    file_has_guard = True
+                    break
+
+            if file_has_guard == True:
+                continue    # no need to write to the file
+            else:
+                with open(path + filename, 'w') as modified:
+                    modified.write("#pragma once\n\n" + data);
 
 
 ### --- STARTING POINT --- ###
@@ -152,7 +177,13 @@ else:
     # otherwise, read the path from command line
     target_directory = sys.argv[1]
 
-check_char(target_directory)
+# check the directory's files for lines containing more than 80 characters
+#check_char(target_directory)
+
+# check the header files for header guards
+check_head_guards(target_directory)
+print("Header guards have been checked.")
+input("Press ENTER to continue...")
 
 # implement header comments into files
 header_yn = prompt("Would you like to implement header comments (y/n)? ", False).lower()
