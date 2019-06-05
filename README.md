@@ -10,6 +10,8 @@ C/C++ Specific:
 oberon.py also supports header guard checking (#pragma once and #ifndef) and allows the user to
 customize the header guard with name, date, username, etc. for all files in a directory.
 
+Special thanks to Matthew Rinaldi for adding and improving existing functionality to Oberon.
+
 ### How to Use ###
 Run oberon.py with
 ```python oberon.py```
