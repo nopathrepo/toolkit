@@ -1,5 +1,5 @@
 # toolkit
-Public toolkit for Computer Science
+Linux command-line toolkit for Computer Science students.
 
 ### oberon.py ###
 This program will check each line in each file in a specified directory to see if the lines exceed
@@ -11,8 +11,7 @@ oberon.py also supports header guard checking (#pragma once and #ifndef) and all
 customize the header guard with name, date, username, etc. for all files in a directory.
 
 ## How to Use ##
-To run Oberon, type:
-  "python oberon.py"
-into your terminal.
+Run oberon.py with
+```python oberon.py```
 
 Oberon is written in Python 3 but does work and has been tested with Python 2.
