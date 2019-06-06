@@ -2,11 +2,10 @@
 Linux command-line toolkit for Computer Science students.
 
 ## oberon.py ##
-This program will check each line in each file in a specified directory to see if the lines exceed
+This program will check each line in each file (C/C++ source and header files) in a specified directory to see if the lines exceed
 a specified amount of characters. This is especially useful if you are limited to a specific number
-of characters per line (such as in a university classroom). 
+of characters per line (such as in a university classroom).
 
-C/C++ Specific:
 oberon.py also supports header guard checking (#pragma once and #ifndef) and allows the user to
 customize the header guard with name, date, username, etc. for all files in a directory.
 
