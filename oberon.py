@@ -178,7 +178,7 @@ else:
     target_directory = sys.argv[1]
 
 # check the directory's files for lines containing more than 80 characters
-#check_char(target_directory)
+check_char(target_directory)
 
 # check the header files for header guards
 check_head_guards(target_directory)
