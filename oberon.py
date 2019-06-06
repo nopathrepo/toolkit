@@ -162,7 +162,7 @@ def check_head_guards(path):
 print("Welcome to OBERON!\n\n")
 
 # specify extension parameters for the program
-extensions = [ ".cpp", ".h", ".c" ]
+extensions = [ ".cpp", ".h", ".c", ".hpp" ]
 
 """ if path is not specified in command line argument,
     prompt user for one """
