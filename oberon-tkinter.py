@@ -6,7 +6,7 @@ OBERON v2
   Authors:  Ryan LeBoeuf
             Matthew Rinaldi
 """
-import os, sys          # os.listdir(), sys.argv, sys.exit()
+import os, sys          # os.listdir(), sys.exit()
 import re
 import datetime         # datetime.datetime.now()
 from tkinter import *
@@ -34,14 +34,10 @@ def add_header(path, name, user, lab, class_section):
         skip = True
         for extension in extensions:
             if extension == get_extension(filename.lower()):
-                """ the file has the appropriate extension, therefore
-                    do not skip prepending to the file and break from
-                    the extensions loop """
+                """ the file has the appropriate extension, do not skip """
                 skip = False
                 break
 
-        """ if skip is true then the current file does not have
-            one of the appropriate extensions """
         if skip == True:
             continue
 
@@ -60,21 +56,19 @@ def add_header(path, name, user, lab, class_section):
 """
 def check_char(path, max_size):
 
-    # get the files in path
     file_list = os.listdir(path)
 
-    """ instantiate array for for loop
-        target_files will be the array iterated through to check for character count """
+    """ instantiate array for for loop;
+        the array iterated through to check for character count """
     target_files = []
 
-    """ for each file in directory, check if file extension matches specified extensions
+    """ for each file in directory, check if file extension matches specified extensions.
         if so, append that file name to target_files array """
     for file in file_list:
         for extension in extensions:
             if extension == get_extension(file):
                 target_files.append(file)
 
-    # iterate through target_files array
     for file in target_files:
         with open(path + file, "r") as current_file:
             current_file = current_file.read().splitlines()
@@ -125,13 +119,7 @@ def process_input():
 
     check_head_guards(target)
 
-    print("made")
-    print(header_yn)
-
     if header_yn.get() == 1:
-        #add_header(target)
-        print("made it")
-
         master = Tk()
         master.title("Header Information")
 
@@ -161,11 +149,13 @@ def process_input():
 extensions = [ ".cpp", ".h", ".c", ".hpp" ]
 
 root = Tk()
-root.title("Oberon Tkinter")
+root.title("Oberon")
 
 Label(root, text="Directory:").pack()
 entry1 = Entry(root)
 entry1.pack()
+
+Label(root, text="(ex: /home/ryan/project/)").pack()
 
 Label(root, text="Line Size:").pack()
 entry2 = Entry(root)
