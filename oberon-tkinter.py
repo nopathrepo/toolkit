@@ -11,6 +11,7 @@ import re
 import datetime         # datetime.datetime.now()
 from tkinter import *
 
+# strips the extension from a file name
 def get_extension(filename):
     i = 1
     while i < len(filename):
@@ -19,9 +20,8 @@ def get_extension(filename):
             return filename[index:]
         i += 1
 
-""" User enters information to place into files matching the extensions
-    array, and the function will prepend the header comments to the
-    files. The functiion DOES NOT prepend to makefiles or binaries
+""" User-defined information is prepended as header comments to the files.
+    The function DOES NOT prepend to makefiles or binaries
         (e.g. a.out, makefile, Makefile).
 """
 def add_header(path, name, user, lab, class_section):
@@ -45,19 +45,14 @@ def add_header(path, name, user, lab, class_section):
         if skip == True:
             continue
 
-        print(filename)
         with open(path + filename, 'r') as original:
             data = original.read()
-
-            # limits the description to 40 characters per line
-            description = re.sub("(.{40})", "\\1\n", description, 0, re.DOTALL)
 
             # writes the information to the file
             with open(path + filename, 'w') as modified:
                 modified.write("/*********************\n\n" + lab +
                 "\n" + filename + "\n" + date + "\n" + name + "\n" + user + "\n" +
-                class_section + "\n\n" +
-                "*********************/" + "\n\n" + data)
+                class_section + "\n\n" + "*********************/" + "\n\n" + data)
 
 """ Check the character length of every string in a directory's files,
     and print text if the file has any line that contains more than the specified
@@ -96,8 +91,8 @@ def check_char(path, max_size):
                     print("*** " + line + " ***")
                     print("<<< Contains more than " + max_size + "  characters >>>\n")
 
-""" checks all .h files in specified path to see if they have header guards.
-    if a .h file does not have a guard, then #pragma once will be prepended
+""" checks all header files in specified path to see if they have header guards.
+    if a header file does not have a guard, then #pragma once will be prepended
     to the file. """
 def check_head_guards(path):
 
@@ -130,8 +125,13 @@ def process_input():
 
     check_head_guards(target)
 
-    if header_yn == 1:
+    print("made")
+    print(header_yn)
+
+    if header_yn.get() == 1:
         #add_header(target)
+        print("made it")
+
         master = Tk()
         master.title("Header Information")
 
@@ -151,13 +151,12 @@ def process_input():
         sect_entry = Entry(master)
         sect_entry.pack()
 
-        Button(master, text="Add Headers", command=master.quit).pack()
+        Button(master, text="Add Headers", command=master.destroy).pack()
 
         master.mainloop()
 
-        add_header(target, name_entry, user_entry, title_entry, sect_entry)
+        add_header(target, name_entry.get(), user_entry.get(), title_entry.get(), sect_entry.get())
 
-### --- STARTING POINT --- ###
 
 extensions = [ ".cpp", ".h", ".c", ".hpp" ]
 
@@ -179,7 +178,7 @@ checkbut.pack()
 exit_button = Button(root, text="Quit", command=root.destroy)
 exit_button.pack()
 
-start_button = Button(root, text="Process", command=process_input)#.grid(row=3, column=2)
+start_button = Button(root, text="Process", command=process_input)
 start_button.pack()
 
 root.mainloop()
