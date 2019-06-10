@@ -16,3 +16,10 @@ Run oberon.py with
 ```python oberon.py```
 
 Oberon is written in Python 3 but does work and has been tested with Python 2.
+
+## oberon-tkinter.py
+GUI version of oberon using tkinter libraries. oberon-tkinter has only been tested with tkinter for Python 3. The functionality is the same, however all user input is taken from a GUI rather than the command line. Tkinter is available on almost all Linux distributions and is in several distro repos.
+
+### How to Use
+```python oberon-tkinter.py```
+Any errors or invalid input will not crash the application. You can simply fix the errors and then click Process again. 
